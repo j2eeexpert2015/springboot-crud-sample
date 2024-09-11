@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body class="container my-5">
+    <h1 class="text-center mb-4">Customers List</h1>
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="customer : ${customers}">
+                <td th:text="${customer.id}">ID</td>
+                <td th:text="${customer.name}">Name</td>
+                <td th:text="${customer.email}">Email</td>
+                <td>
+                    <a th:href="@{/customers/edit/{id}(id=${customer.id})}" class="btn btn-primary btn-sm">Edit</a>
+                    <a th:href="@{/customers/delete/{id}(id=${customer.id})}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this customer?');">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <a href="/customers/add" class="btn btn-success">Add New Customer</a>
+</body>
+</html>
